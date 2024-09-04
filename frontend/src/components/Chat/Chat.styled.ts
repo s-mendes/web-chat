@@ -6,14 +6,14 @@ export const ChatBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
+  overflow-y: auto;
+  max-height: calc(100dvh - 5.25rem);
 
   & > .messages {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    overflow-y: auto;
     padding: 1rem;
     & > div {
       width: 100%;
@@ -43,11 +43,15 @@ export const ChatBox = styled.div`
     }
   }
   & > form {
+    position: fixed;
     background-color: #191919;
     padding: 1rem 1.25rem;
     display: flex;
     align-items: center;
     gap: 0.625rem;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     & > input {
       border: none;
       padding: 1rem;

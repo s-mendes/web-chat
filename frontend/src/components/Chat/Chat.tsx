@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "../../hooks/useChat";
 import { ChatBox } from "./Chat.styled";
 
 function Chat() {
   const [message, setMessage] = useState('');
   const { sendMessage, myUser, messages } = useChat();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTo({
+        top: messagesEndRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [messages]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +37,7 @@ function Chat() {
 
   return (
     <>
-      <ChatBox>
+      <ChatBox ref={messagesEndRef}>
         <div className="messages">
           {messages.map((msg, index) => {
             return (
