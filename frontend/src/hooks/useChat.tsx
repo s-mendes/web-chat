@@ -43,7 +43,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
       color: getRandomColor(),
     }
     setMyUser(user);
-    const socket = new WebSocket('ws://localhost:8080');
+    const socket = new WebSocket('wss://web-chat-euiq.onrender.com');
     socket.onopen = () => {
       socket.send(JSON.stringify({ type: 'login', user }));
     }
